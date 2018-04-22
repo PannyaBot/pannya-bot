@@ -24,4 +24,4 @@ if (process.env.NODE_ENV === "production") {
 setInterval(function () {
     request('https://pannya-bot.herokuapp.com/', function (error, response, body) {
     });
-}, 1000);
+}, 1000 * 60 * 13);
