@@ -39,9 +39,11 @@ client.on("message", function(message) {
         request('https://api.tenor.com/v1/random?key=' + tenorKey + "&q=" + query + "&limit=50", function(err, res, body) {
             var gifs = JSON.parse(body).results;
             var count = gifs.length;
-            var rand = Math.floor(Math.random() * count);
-            var url = gifs[rand].url;
-            message.reply(url);
+            if (count > 0) {
+                var rand = Math.floor(Math.random() * count);
+                var url = gifs[rand].url;
+                message.reply(url);      
+            }
         });
     }
     // if (message.content === "+loli") {
