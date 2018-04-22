@@ -1,6 +1,6 @@
 var Discord = require('discord.js');
 var client = new Discord.Client();
-var auth = rquire('auth.json');
+var auth = require('./auth.json');
 
 client.on("message", function(message) {
     if (message.content === "ping") {
