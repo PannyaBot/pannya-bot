@@ -14,4 +14,12 @@ client.on("message", function(message) {
 //     }
 // });
 
-client.login(auth.token);
+console.log("==========");
+console.log(process.env.NODE_ENV);
+
+if (process.env.NODE_ENV === "production") {
+    console.log(process.env.DISCORD_TOKEN)
+    client.login(process.env.DISCORD_TOKEN);
+} else {
+    client.login(auth.token);
+}
