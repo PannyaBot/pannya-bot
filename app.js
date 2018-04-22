@@ -96,13 +96,6 @@ client.on("message", function(message) {
 
 client.login(discordToken);
 
-if (process.env.NODE_ENV === "production") {
-    client.login(process.env.DISCORD_TOKEN);
-} else {
-    var auth = require('./auth.json');
-    client.login(auth.token);
-}
-
 setInterval(function () {
     request('https://pannya-bot.herokuapp.com/', function (error, response, body) {
     });
