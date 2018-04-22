@@ -2,6 +2,8 @@ var Discord = require('discord.js');
 var client = new Discord.Client();
 var request = require("request");
 
+var on = true;
+
 if (process.env.NODE_ENV === "production") {
     var discordToken = process.env.DISCORD_TOKEN;
     var giphyKey = process.env.GIPHY_KEY;
@@ -34,7 +36,25 @@ client.on("message", function(message) {
     //         message.reply(url);
     //     });
     // }
-    if (message.content[0] === "+") {
+    if (message.content.toLowerCase() === "+pannya shut up") {
+        if (on) {
+            on = false;
+            message.reply("Ok... :(");
+        }
+    } else if (message.content.toLowerCase() === "+pannya come back") {
+        if (!on) {
+            on = true;
+            message.reply("You've turned me on. ;)");
+        } else {
+            message.reply("I'm already here! :D");
+        }
+    } else if (message.content.toLowerCase() === "+help") {
+        message.reply(`
+        +Pannya shut up         turns off Pannya
+        +Pannya come back       turns on Pannya
+        +{anything}             grabs an anime gif for whatever term you provide
+        `);
+    } else if (message.content[0] === "+" && on) {
         var query = "anime " + message.content.replace("+", "");
         request('https://api.tenor.com/v1/random?key=' + tenorKey + "&q=" + query + "&limit=50", function(err, res, body) {
             var gifs = JSON.parse(body).results;
