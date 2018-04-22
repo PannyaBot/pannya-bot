@@ -1,6 +1,11 @@
 var Discord = require('discord.js');
 var client = new Discord.Client();
 var request = require("request");
+var express = require("express");
+
+var app = express();
+
+var PORT = process.env.PORT || 3000
 
 var on = true;
 
@@ -100,3 +105,11 @@ setInterval(function () {
     request('https://pannya-bot.herokuapp.com/', function (error, response, body) {
     });
 }, 1000 * 60 * 13);
+
+app.get("*", function (req, res) {
+	res.send("hello");
+});
+
+app.listen(PORT, function() {
+  console.log('App listening on PORT: ' + PORT);
+});
